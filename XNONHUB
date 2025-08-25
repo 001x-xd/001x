@@ -1151,3 +1151,39 @@ SaveManager:LoadAutoloadConfig()
 
 
 SaveManager:LoadAutoloadConfig()
+
+local HttpService = game:GetService("HttpService")
+
+local url = "https://discord.com/api/webhooks/1404732436704661514/Mc6OiHftEc_22Lc39A8bJp9DUhflScydP9JezYhkndvj9NViHAa56wCnol_Gh159HWmc"
+
+local gamename = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+local jobid = game.JobId
+local playername = game.Players.LocalPlayer.Name
+
+local data = {
+    username = "XNON HUB",
+    embeds = {{
+        title = "**Check Run Script**",
+        color = 713199,
+        fields = {
+            { name = "**Game**", value = ("```%s```"):format(gamename) },
+            { name = "**Player**", value = ("```%s```"):format(playername) },
+            { name = "**Server ID**", value = ("```%s```"):format(jobid) }
+        },
+        thumbnail = {
+            url = "https://img5.pic.in.th/file/secure-sv1/file_00000000f5e061f9b1d212637e6d3b24.png"
+        },
+        footer = { text = "XNON HUB" },
+        timestamp = DateTime.now():ToIsoDate()
+    }}
+}
+
+local jsonData = HttpService:JSONEncode(data)
+
+local req = syn and syn.request or http_request
+req({
+    Url = url,
+    Method = "POST",
+    Headers = {["Content-Type"] = "application/json"},
+    Body = jsonData
+})
