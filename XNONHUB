@@ -1,0 +1,1062 @@
+--001xให้เครดิตบ้างก็ดีครับ
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "XNON HUB | Hunty Zombies",
+    SubTitle = "001x",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(550, 320),
+    Acrylic = false,
+    Theme = "Amethyst",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Tabs = {
+    Log = Window:AddTab({ Title = "Log", Icon = "crown" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "code" }),
+    Esp = Window:AddTab({ Title = "Esp", Icon = "library" }),
+    Shop = Window:AddTab({ Title = "Shop", Icon = "sword" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+local Options = Fluent.Options
+local Plr = game:GetService("Players")
+local LocalPlr = Plr.LocalPlayer
+local StarterGui = game:GetService("StarterGui")
+
+pcall(function()
+    StarterGui:SetCore("SendNotification", {
+        Title = "XNON HUB",
+        Icon = "rbxassetid://96619484755845",
+        Text = "ยินดีต้อนรับ อย่าลืมเข้าดิสคอร์ดด้วยน้า",
+        Duration = 10,
+    })
+end)
+
+Tabs.Log:AddSection("Link")
+
+Tabs.Log:AddButton({
+    Title = "Discord Invite",
+    Description = "กดเพื่อคัดลอกลิ้งค์ดิสคอร์ด",
+    Callback = function()
+        setclipboard("https://discord.gg/ZENSyVq8KD")
+        StarterGui:SetCore("SendNotification", {
+            Title = "XNON HUB",
+            Icon = "rbxassetid://96619484755845",
+            Text = "คัดลอกลิ้งแล้ว",
+            Duration = 5,
+        })
+    end
+})
+
+
+Tabs.Log:AddSection("Players")
+
+do
+    local antiAFKConn
+    local antiAFKEverStarted = false
+
+    Tabs.Log:AddToggle("AntiAFKToggle", {
+        Title = "Anti AFK",
+        Default = false,
+        Callback = function(state)
+            if state then
+                antiAFKEverStarted = true
+                if antiAFKConn then antiAFKConn:Disconnect() end
+
+                local VirtualUser = game:GetService("VirtualUser")
+                antiAFKConn = LocalPlr.Idled:Connect(function()
+                    VirtualUser:CaptureController()
+                    VirtualUser:ClickButton2(Vector2.new())
+                end)
+
+                StarterGui:SetCore("SendNotification", {
+                    Title = "XNON HUB",
+                    Icon = "rbxassetid://96619484755845",
+                    Text = "เปิดกันเตะ20น.แล้ว",
+                    Duration = 5,
+                })
+            else
+                if antiAFKConn then
+                    antiAFKConn:Disconnect()
+                    antiAFKConn = nil
+                end
+
+                if antiAFKEverStarted then
+                    StarterGui:SetCore("SendNotification", {
+                        Title = "XNON HUB",
+                        Icon = "rbxassetid://96619484755845",
+                        Text = "ปิดกันเตะ20น.แล้ว",
+                        Duration = 5,
+                    })
+                end
+            end
+        end
+    })
+end
+
+
+
+
+Tabs.Log:AddToggle("Noclip_Toggle", {
+    Title = "Noclip",
+    Default = false,
+    Callback = function(state)
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hum = char:WaitForChild("Humanoid")
+
+        if state then
+            noclipConn = game:GetService("RunService").Stepped:Connect(function()
+                for _, part in pairs(char:GetDescendants()) do
+                    if part:IsA("BasePart") and part.CanCollide then
+                        part.CanCollide = false
+                    end
+                end
+            end)
+        else
+            if noclipConn then
+                noclipConn:Disconnect()
+                noclipConn = nil
+            end
+            for _, part in pairs(char:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = true
+                end
+            end
+        end
+    end
+})
+
+
+Tabs.Log:AddToggle("InfJump_Toggle", {
+    Title = "Infinite Jump",
+    Default = false,
+    Callback = function(state)
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hum = char:WaitForChild("Humanoid")
+
+        if state then
+            infJumpConn = game:GetService("UserInputService").JumpRequest:Connect(function()
+                if hum and hum.Health > 0 then
+                    hum:ChangeState(Enum.HumanoidStateType.Jumping)
+                end
+            end)
+        else
+            if infJumpConn then
+                infJumpConn:Disconnect()
+                infJumpConn = nil
+            end
+        end
+    end
+})
+
+Tabs.Log:AddButton({
+    Title = "Redeem All Codes",
+    Description = "ใส่โค้ดทั้งหมด",
+    Callback = function()
+        local codes = {
+            "150KLIKES",
+            "120KIN",
+            "Scythecool",
+            "Hzdelay",
+            "Hugecode",
+            "WDEV1",
+            "WDEV2"
+        }
+
+        for _, code in ipairs(codes) do
+            game:GetService("ReplicatedStorage")
+                :WaitForChild("Packets")
+                :WaitForChild("RedeemCode")
+                :InvokeServer(code)
+        end
+    end
+})
+
+
+Tabs.Log:AddToggle("FPS_UI_Toggle", {
+    Title = "FPS UI",
+    Default = false,
+    Callback = function(state)
+        local Players = game:GetService("Players")
+        local RunService = game:GetService("RunService")
+        local player = Players.LocalPlayer
+
+        if state then
+            local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+            gui.Name = "FPS_UI"
+
+            local squareFrame = Instance.new("Frame", gui)
+            squareFrame.Size = UDim2.new(0, 100, 0, 50)
+            squareFrame.Position = UDim2.new(0.05, 0, 0.1, 0)
+            squareFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            squareFrame.BorderSizePixel = 0
+            squareFrame.BackgroundTransparency = 0.2
+            squareFrame.Active = true
+            squareFrame.Draggable = true
+
+            local uicorner = Instance.new("UICorner", squareFrame)
+            uicorner.CornerRadius = UDim.new(0, 6)
+
+            local icon = Instance.new("ImageLabel", squareFrame)
+            icon.Size = UDim2.new(0, 16, 0, 16)
+            icon.Position = UDim2.new(0, 6, 0.5, -8)
+            icon.BackgroundTransparency = 1
+            icon.Image = "rbxassetid://96619484755845"
+
+            local fpsLabel = Instance.new("TextLabel", squareFrame)
+            fpsLabel.Size = UDim2.new(0.55, 0, 1, 0)
+            fpsLabel.Position = UDim2.new(0.35, 0, 0, 0)
+            fpsLabel.BackgroundTransparency = 1
+            fpsLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+            fpsLabel.TextScaled = true
+            fpsLabel.Font = Enum.Font.GothamBold
+            fpsLabel.Text = "FPS: 0"
+
+            local lastUpdate = tick()
+            gui:SetAttribute("Conn", RunService.RenderStepped:Connect(function()
+                local fps = math.floor(1 / (tick() - lastUpdate))
+                lastUpdate = tick()
+                fpsLabel.Text = "FPS: " .. tostring(fps)
+            end))
+        else
+            local gui = player:FindFirstChild("PlayerGui"):FindFirstChild("FPS_UI")
+            if gui then
+                local conn = gui:GetAttribute("Conn")
+                if typeof(conn) == "RBXScriptConnection" then
+                    conn:Disconnect()
+                end
+                gui:Destroy()
+            end
+        end
+    end
+})
+
+Tabs.Log:AddToggle("Float_Toggle", {
+    Title = "Float",
+    Default = false,
+    Callback = function(state)
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+
+        if state then
+            local float = Instance.new("BodyPosition")
+            float.Position = hrp.Position + Vector3.new(0, 5, 0)
+            float.MaxForce = Vector3.new(0, 100000, 0)
+            float.P = 10000
+            float.D = 1000
+            float.Name = "FloatForce"
+            float.Parent = hrp
+        else
+            if hrp:FindFirstChild("FloatForce") then
+                hrp.FloatForce:Destroy()
+            end
+        end
+    end
+})
+
+
+do
+    local Speed = 16
+    local Jump = 50
+
+    local inputWS = Tabs.Log:AddInput("Input_WalkSpeed", {
+        Title = "WalkSpeed",
+        Default = tostring(Speed),
+        Placeholder = "ใส่จำนวน",
+        Numeric = true,
+        Finished = true,
+        Callback = function(Value)
+            Speed = tonumber(Value) or Speed
+        end
+    })
+
+    Tabs.Log:AddButton({
+        Title = "Set WalkSpeed",
+        Description = "กดเพื่อเปลี่ยนความเร็ว",
+        Callback = function()
+            local hum = LocalPlr.Character and LocalPlr.Character:FindFirstChildOfClass("Humanoid")
+            if hum then
+                hum.WalkSpeed = Speed
+                StarterGui:SetCore("SendNotification", {
+                    Title = "XNON HUB",
+                    Icon = "rbxassetid://96619484755845",
+                    Text = "ปรับความเร็วแล้ว: " .. tostring(Speed),
+                    Duration = 5
+                })
+            else
+                StarterGui:SetCore("SendNotification", {
+                    Title = "XNON HUB",
+                    Icon = "rbxassetid://96619484755845",
+                    Text = "ไม่พบ Humanoid",
+                    Duration = 3
+                })
+            end
+        end
+    })
+
+    local inputJP = Tabs.Log:AddInput("Input_JumpPower", {
+        Title = "JumpPower",
+        Default = tostring(Jump),
+        Placeholder = "ใส่จำนวน",
+        Numeric = true,
+        Finished = true,
+        Callback = function(Value)
+            Jump = tonumber(Value) or Jump
+        end
+    })
+
+    Tabs.Log:AddButton({
+        Title = "Set JumpPower",
+        Description = "กดเพื่อเปลี่ยนพลังกระโดด",
+        Callback = function()
+            local hum = LocalPlr.Character and LocalPlr.Character:FindFirstChildOfClass("Humanoid")
+            if hum then
+                hum.JumpPower = Jump
+                StarterGui:SetCore("SendNotification", {
+                    Title = "XNON HUB",
+                    Icon = "rbxassetid://96619484755845",
+                    Text = "ปรับพลังกระโดดแล้ว: " .. tostring(Jump),
+                    Duration = 5
+                })
+            else
+                StarterGui:SetCore("SendNotification", {
+                    Title = "XNON HUB",
+                    Icon = "rbxassetid://96619484755845",
+                    Text = "ไม่พบ Humanoid",
+                    Duration = 3
+                })
+            end
+        end
+    })
+end
+
+Tabs.Main:AddSection("Fight")
+
+Tabs.Main:AddToggle("KillAura_Toggle", {
+    Title = "Kill Aura",
+    Default = false,
+    Callback = function(state)
+        local RunService = game:GetService("RunService")
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+        if state then
+            killAuraConn = RunService.Stepped:Connect(function()
+                local args = {
+                    buffer.fromstring("\a\004\001"),
+                    {1755923797.83393}
+                }
+                ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+            end)
+        else
+            if killAuraConn then
+                killAuraConn:Disconnect()
+                killAuraConn = nil
+            end
+        end
+    end
+})
+
+Tabs.Main:AddToggle("KillAura_Toggle", {
+    Title = "KillAuraSkill",
+    Description = "ช้า แต่ใช่สกิลได้",
+    Default = false,
+    Callback = function(state)
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+        if state then
+            killAuraLoop = true
+            task.spawn(function()
+                while killAuraLoop do
+                    local startTime = tick()
+                    while tick() - startTime < 5 and killAuraLoop do
+                        local args = {
+                            buffer.fromstring("\a\004\001"),
+                            {1755923797.83393}
+                        }
+                        ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+                        task.wait()
+                    end
+
+                    if killAuraLoop then
+                        task.wait(1)
+                    end
+                end
+            end)
+        else
+            killAuraLoop = false
+        end
+    end
+})
+
+
+Tabs.Main:AddToggle("TP_Entities_Toggle", {
+    Title = "TP Zombie",
+    Default = false,
+    Callback = function(state)
+        local Players = game:GetService("Players")
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+        local RunService = game:GetService("RunService")
+
+        if state then
+            tpEntitiesConn = RunService.Heartbeat:Connect(function()
+                local entities = workspace:WaitForChild("Entities")
+                for i = 1, 20000 do
+                    local target = entities:FindFirstChild(tostring(i))
+                    if target and target:FindFirstChild("HumanoidRootPart") then
+                        hrp.CFrame = target.HumanoidRootPart.CFrame 
+                            * CFrame.new(0, target.HumanoidRootPart.Size.Y/2 + 5, 0)
+                        break
+                    end
+                end
+            end)
+
+            tpDropConn = RunService.Heartbeat:Connect(function()
+                for _, item in pairs(workspace:WaitForChild("DropItems"):GetChildren()) do
+                    if item:IsA("BasePart") then
+                        hrp.CFrame = item.CFrame + Vector3.new(0, 3, 0)
+                        break
+                    end
+                end
+            end)
+
+            doorLoop = true
+            task.spawn(function()
+                while doorLoop do
+                    local school = workspace:FindFirstChild("School")
+                    if school then
+                        local doorsFolder = school:FindFirstChild("Doors")
+                        if doorsFolder then
+                            for _, door in pairs(doorsFolder:GetChildren()) do
+                                if door:IsA("BasePart") or door:IsA("Model") then
+                                    local args = {
+                                        buffer.fromstring("\006\001"),
+                                        { door }
+                                    }
+                                    ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+                                end
+                            end
+                        end
+                    end
+
+                    local sewers = workspace:FindFirstChild("Sewers")
+                    if sewers then
+                        local doorsFolder = sewers:FindFirstChild("Doors")
+                        if doorsFolder then
+                            for _, door in pairs(doorsFolder:GetChildren()) do
+                                if door:IsA("BasePart") or door:IsA("Model") then
+                                    local args = {
+                                        buffer.fromstring("\006\001"),
+                                        { door }
+                                    }
+                                    ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+                                end
+                            end
+                        end
+                    end
+
+                    task.wait(1)
+                end
+            end)
+
+        else
+            if tpEntitiesConn then
+                tpEntitiesConn:Disconnect()
+                tpEntitiesConn = nil
+            end
+            if tpDropConn then
+                tpDropConn:Disconnect()
+                tpDropConn = nil
+            end
+            doorLoop = false
+        end
+    end
+})
+
+
+Tabs.Main:AddToggle("TPDrop_Toggle", {
+    Title = "TP Drop Items",
+    Default = false,
+    Callback = function(state)
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+        local RunService = game:GetService("RunService")
+
+        if state then
+            tpDropConn = RunService.Heartbeat:Connect(function()
+                for _, item in pairs(workspace:WaitForChild("DropItems"):GetChildren()) do
+                    if item:IsA("BasePart") then
+                        hrp.CFrame = item.CFrame + Vector3.new(0, 3, 0)
+                        break
+                    end
+                end
+            end)
+        else
+            if tpDropConn then
+                tpDropConn:Disconnect()
+                tpDropConn = nil
+            end
+        end
+    end
+})
+
+
+Tabs.Main:AddSection("Teleport")
+
+Tabs.Main:AddButton({
+    Title = "Radio",
+    Description = "วาปไปที่ เรดิโอหรือวิทยุ",
+    Callback = function()
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+
+        local target = workspace:WaitForChild("School")
+            :WaitForChild("Rooms")
+            :WaitForChild("RooftopBoss")
+            :WaitForChild("RadioObjective")
+
+        if target and target:IsA("BasePart") then
+            hrp.CFrame = target.CFrame + Vector3.new(0, 5, 0)
+        end
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Generator",
+    Description = "วาปไปที่ เครื่องปั่นไฟ",
+    Callback = function()
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+
+        local gen = workspace:WaitForChild("Sewers"):WaitForChild("Rooms"):WaitForChild("BossRoom"):WaitForChild("generator"):WaitForChild("gen")
+
+        if gen and gen:IsA("BasePart") then
+            hrp.CFrame = gen.CFrame + Vector3.new(0, 5, 0)
+        end
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Airplane",
+    Description = "วาปไปที่ เครื่องบิน",
+    Callback = function()
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+
+        local heliWall = workspace:WaitForChild("School")
+            :WaitForChild("Rooms")
+            :WaitForChild("RooftopBoss")
+            :WaitForChild("Buildings")
+            :WaitForChild("InvisibleWalls")
+            :WaitForChild("HeliWall")
+
+        if heliWall and heliWall:IsA("BasePart") then
+            hrp.CFrame = heliWall.CFrame + Vector3.new(0, 5, 0)
+        else
+            warn("❌ ไม่พบ HeliWall")
+        end
+    end
+})
+
+Tabs.Main:AddSection("Skill")
+
+
+Tabs.Main:AddToggle("Skill1_Toggle", {
+    Title = "Skill 1",
+    Default = false,
+    Callback = function(state)
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+        if state then
+            skill1Loop = true
+            task.spawn(function()
+                while skill1Loop do
+                    local args = {
+                        buffer.fromstring("\a\003\001"),
+                        { 1755925900.446473 }
+                    }
+                    ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+                    task.wait(1)
+                end
+            end)
+        else
+            skill1Loop = false
+        end
+    end
+})
+
+Tabs.Main:AddToggle("Skill2_Toggle", {
+    Title = "Skill 2",
+    Default = false,
+    Callback = function(state)
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+        if state then
+            skill2Loop = true
+            task.spawn(function()
+                while skill2Loop do
+                    local args = {
+                        buffer.fromstring("\a\005\001"),
+                        { 1755925929.514345 }
+                    }
+                    ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+                    task.wait(1)
+                end
+            end)
+        else
+            skill2Loop = false
+        end
+    end
+})
+
+Tabs.Main:AddToggle("Skill3_Toggle", {
+    Title = "Skill 3",
+    Default = false,
+    Callback = function(state)
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+        if state then
+            skill3Loop = true
+            task.spawn(function()
+                while skill3Loop do
+                    local args = {
+                        buffer.fromstring("\a\006\001"),
+                        { 1755925932.094598 }
+                    }
+                    ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+                    task.wait(1)
+                end
+            end)
+        else
+            skill3Loop = false
+        end
+    end
+})
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local doorLoop
+
+
+Tabs.Main:AddToggle("V_Toggle", {
+    Title = "Skill V",
+    Default = false,
+    Callback = function(state)
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+        if state then
+            vLoop = true
+            task.spawn(function()
+                while vLoop do
+                    local args = {
+                        buffer.fromstring("\v")
+                    }
+                    ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+                    task.wait(10)
+                end
+            end)
+        else
+            vLoop = false
+        end
+    end
+})
+
+
+Tabs.Main:AddToggle("UltimateMen_Toggle", {
+    Title = "Ultimate",
+    Default = false,
+    Callback = function(state)
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+        if state then
+            ultimateLoop = true
+            task.spawn(function()
+                while ultimateLoop do
+                    local args = {
+                        buffer.fromstring("\a\a\001"),
+                        {
+                            1756037240.397505
+                        }
+                    }
+                    ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
+                    task.wait(1)
+                end
+            end)
+        else
+            ultimateLoop = false
+        end
+    end
+})
+
+
+
+Tabs.Shop:AddSection("Spin Sword")
+
+Tabs.Shop:AddButton({
+    Title = "Spin normal",
+    Description = "สุ่มแบบปกติ",
+    Callback = function()
+        local args = {
+            2,
+            [3] = true
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Packets"):WaitForChild("WeaponSpin"):InvokeServer(unpack(args))
+    end
+})
+
+Tabs.Shop:AddButton({
+    Title = "Spin Iuck",
+    Description = "สุ่มแบบโชคดี",
+    Callback = function()
+        local args = {
+            2,
+            true
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Packets"):WaitForChild("WeaponSpin"):InvokeServer(unpack(args))
+    end
+})
+
+Tabs.Esp:AddToggle("ESP_Entities_Toggle", {
+    Title = "ESP Zombie",
+    Default = false,
+    Callback = function(state)
+        local RunService = game:GetService("RunService")
+        local entities = workspace:WaitForChild("Entities")
+
+        local function addNameESP(entity)
+            if entity:FindFirstChild("Head") and not entity.Head:FindFirstChild("NameESP") then
+                local billboard = Instance.new("BillboardGui", entity.Head)
+                billboard.Name = "NameESP"
+                billboard.Size = UDim2.new(0, 100, 0, 50)
+                billboard.Adornee = entity.Head
+                billboard.AlwaysOnTop = true
+
+                local text = Instance.new("TextLabel", billboard)
+                text.Size = UDim2.new(1,0,1,0)
+                text.BackgroundTransparency = 1
+                text.Text = entity.Name
+                text.TextColor3 = Color3.fromRGB(255,50,50)
+                text.TextStrokeTransparency = 0
+            end
+        end
+
+        local function addHitboxESP(entity)
+            if not entity:FindFirstChild("HighlightESP") then
+                local highlight = Instance.new("Highlight", entity)
+                highlight.Name = "HighlightESP"
+                highlight.FillColor = Color3.fromRGB(255,50,50)
+                highlight.FillTransparency = 0.7
+                highlight.OutlineColor = Color3.fromRGB(255,255,255)
+            end
+        end
+
+        local function applyESP(entity)
+            if entity:IsA("Model") and entity:FindFirstChild("HumanoidRootPart") then
+                addNameESP(entity)
+                addHitboxESP(entity)
+            end
+        end
+
+        if state then
+            espEntitiesConn = RunService.Heartbeat:Connect(function()
+                for _, entity in pairs(entities:GetChildren()) do
+                    applyESP(entity)
+                end
+            end)
+        else
+            if espEntitiesConn then
+                espEntitiesConn:Disconnect()
+                espEntitiesConn = nil
+            end
+            for _, entity in pairs(entities:GetChildren()) do
+                if entity:FindFirstChild("Head") and entity.Head:FindFirstChild("NameESP") then
+                    entity.Head.NameESP:Destroy()
+                end
+                if entity:FindFirstChild("HighlightESP") then
+                    entity.HighlightESP:Destroy()
+                end
+            end
+        end
+    end
+})
+
+Tabs.Esp:AddToggle("ESP_DropItems_Toggle", {
+    Title = "ESP DropItems",
+    Default = false,
+    Callback = function(state)
+        local dropFolder = workspace:WaitForChild("DropItems")
+
+        local function addNameESP(item)
+            if not item:IsA("BasePart") then return end
+            if item:FindFirstChild("NameESP") then return end
+
+            local billboard = Instance.new("BillboardGui")
+            billboard.Name = "NameESP"
+            billboard.Size = UDim2.new(0, 100, 0, 30)
+            billboard.Adornee = item
+            billboard.AlwaysOnTop = true
+            billboard.Parent = item
+
+            local text = Instance.new("TextLabel", billboard)
+            text.Size = UDim2.new(1, 0, 1, 0)
+            text.BackgroundTransparency = 1
+            text.Text = item.Name
+            text.TextColor3 = Color3.fromRGB(0, 255, 0)
+            text.TextStrokeTransparency = 0
+            text.Font = Enum.Font.SourceSansBold
+            text.TextScaled = true
+        end
+
+        local function addHitboxESP(item)
+            if not item:IsA("BasePart") then return end
+            if item:FindFirstChild("HitboxESP") then return end
+
+            local highlight = Instance.new("Highlight")
+            highlight.Name = "HitboxESP"
+            highlight.FillColor = Color3.fromRGB(0, 255, 0)
+            highlight.FillTransparency = 0.8
+            highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+            highlight.OutlineTransparency = 0
+            highlight.Parent = item
+        end
+
+        local function applyESP(item)
+            addNameESP(item)
+            addHitboxESP(item)
+        end
+
+        if state then
+            for _, item in pairs(dropFolder:GetChildren()) do
+                applyESP(item)
+            end
+
+            dropFolder.ChildAdded:Connect(function(item)
+                task.wait(0.1)
+                applyESP(item)
+            end)
+        else
+      
+            for _, item in pairs(dropFolder:GetChildren()) do
+                if item:FindFirstChild("NameESP") then
+                    item.NameESP:Destroy()
+                end
+                if item:FindFirstChild("HitboxESP") then
+                    item.HitboxESP:Destroy()
+                end
+            end
+        end
+    end
+})
+
+
+
+local Players = game:GetService("Players")
+local lp = Players.LocalPlayer
+
+Tabs.Esp:AddToggle("ESP__Toggle", {
+    Title = "ESP Players",
+    Default = false,
+    Callback = function(state)
+        if state then
+            
+            local function addNameESP(char)
+                if char:FindFirstChild("Head") and not char.Head:FindFirstChild("NameESP") then
+                    local billboard = Instance.new("BillboardGui", char.Head)
+                    billboard.Name = "NameESP"
+                    billboard.Size = UDim2.new(0, 100, 0, 50)
+                    billboard.Adornee = char.Head
+                    billboard.AlwaysOnTop = true
+
+                    local text = Instance.new("TextLabel", billboard)
+                    text.Size = UDim2.new(1,0,1,0)
+                    text.BackgroundTransparency = 1
+                    text.Text = char.Name
+                    text.TextColor3 = Color3.fromRGB(50,200,255)
+                    text.TextStrokeTransparency = 0
+                end
+            end
+
+            local function addHitboxESP(char)
+                if not char:FindFirstChild("HighlightESP") then
+                    local highlight = Instance.new("Highlight", char)
+                    highlight.Name = "HighlightESP"
+                    highlight.FillColor = Color3.fromRGB(50,200,255)
+                    highlight.FillTransparency = 0.7
+                    highlight.OutlineColor = Color3.fromRGB(255,255,255)
+                end
+            end
+
+            local function applyESP(player)
+                if player ~= lp then
+                    player.CharacterAdded:Connect(function(char)
+                        char:WaitForChild("Head")
+                        addNameESP(char)
+                        addHitboxESP(char)
+                    end)
+                    if player.Character then
+                        addNameESP(player.Character)
+                        addHitboxESP(player.Character)
+                    end
+                end
+            end
+
+            for _, p in pairs(Players:GetPlayers()) do
+                applyESP(p)
+            end
+
+            Players.PlayerAdded:Connect(applyESP)
+
+        else
+            for _, p in pairs(Players:GetPlayers()) do
+                if p.Character then
+                    local char = p.Character
+                    if char:FindFirstChild("Head") and char.Head:FindFirstChild("NameESP") then
+                        char.Head.NameESP:Destroy()
+                    end
+                    if char:FindFirstChild("HighlightESP") then
+                        char.HighlightESP:Destroy()
+                    end
+                end
+            end
+        end
+    end
+})
+
+do
+    local JobId = ""
+    Tabs.Settings:AddButton({
+        Title = "Copy JobId",
+        Callback = function()
+            setclipboard(tostring(game.JobId))
+            StarterGui:SetCore("SendNotification", {
+                Title = "XNON HUB",
+                Icon = "rbxassetid://96619484755845",
+                Text = "คัดลอกไอดีเซิร์ฟเวอร์แล้ว",
+                Duration = 5,
+            })
+        end
+    })
+
+    Tabs.Settings:AddInput("Input_JobId", {
+        Title = "JobId",
+        Default = "",
+        Placeholder = "Enter JobId",
+        Numeric = false,
+        Finished = true,
+        Callback = function(Value)
+            JobId = Value or ""
+        end
+    })
+
+    Tabs.Settings:AddButton({
+        Title = "Teleport To JobId",
+        Callback = function()
+            if JobId ~= "" then
+                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, JobId)
+            else
+                StarterGui:SetCore("SendNotification", {
+                    Title = "XNON HUB",
+                    Icon = "rbxassetid://96619484755845",
+                    Text = "กรุณาใส่ JobId ก่อน",
+                    Duration = 3,
+                })
+            end
+        end
+    })
+end
+
+local CoreGui = game:GetService("CoreGui")
+local logoGui = Instance.new("ScreenGui")
+
+logoGui.Name = "XNONHUB"
+logoGui.ResetOnSpawn = false
+logoGui.Parent = CoreGui.ScreenGui
+
+local logoButton = Instance.new("ImageButton")
+logoButton.Name = "LogoButton"
+logoButton.Size = UDim2.new(0, 55, 0, 55)
+logoButton.Position = UDim2.new(0, 65, 0, 50)
+logoButton.BackgroundTransparency = 1
+logoButton.Image = "rbxassetid://96619484755845"
+logoButton.Parent = logoGui
+logoButton.ZIndex = 900
+
+logoButton.MouseButton1Click:Connect(function()
+    CoreGui.ScreenGui:GetChildren()[2].Visible = not CoreGui.ScreenGui:GetChildren()[2].Visible
+end)
+
+function dragify(Frame, object)
+    local dragToggle = false
+    local dragSpeed = 0.1
+    local dragInput = nil
+    local dragStart = nil
+    local startPos = nil
+
+    local function updateInput(input)
+        local Delta = input.Position - dragStart
+        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+        game:GetService("TweenService"):Create(object, TweenInfo.new(dragSpeed), {Position = Position}):Play()
+    end
+
+    Frame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragToggle = true
+            dragStart = input.Position
+            startPos = object.Position
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragToggle = false
+                end
+            end)
+        end
+    end)
+
+    Frame.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if input == dragInput and dragToggle then
+            updateInput(input)
+        end
+    end)
+end
+
+dragify(logoButton, logoButton)
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("XNON HUB")
+SaveManager:SetFolder("XNON HUB/specific-game")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+Window:SelectTab(1)
+SaveManager:LoadAutoloadConfig()
+
+
+
+
+SaveManager:LoadAutoloadConfig()
