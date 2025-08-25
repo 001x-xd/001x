@@ -119,7 +119,7 @@ local Tabs = {
     Log = Window:AddTab({ Title = "Log", Icon = "crown" }),
     Main = Window:AddTab({ Title = "Main", Icon = "code" }),
     Esp = Window:AddTab({ Title = "Esp", Icon = "library" }),
-    Shop = Window:AddTab({ Title = "Shop", Icon = "sword" }),
+    Tp = Window:AddTab({ Title = "Teleport", Icon = "map" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -162,6 +162,7 @@ do
 
     Tabs.Log:AddToggle("AntiAFKToggle", {
         Title = "Anti AFK",
+        Description = "กันหลุด20นาที",
         Default = false,
         Callback = function(state)
             if state then
@@ -204,6 +205,7 @@ end
 
 Tabs.Log:AddToggle("Noclip_Toggle", {
     Title = "Noclip",
+    Description = "ทะลุ",
     Default = false,
     Callback = function(state)
         local Players = game:GetService("Players")
@@ -236,6 +238,7 @@ Tabs.Log:AddToggle("Noclip_Toggle", {
 
 Tabs.Log:AddToggle("InfJump_Toggle", {
     Title = "Infinite Jump",
+    Description = "กระโดดไม่จำกัด",
     Default = false,
     Callback = function(state)
         local Players = game:GetService("Players")
@@ -284,6 +287,7 @@ Tabs.Log:AddButton({
 
 Tabs.Log:AddToggle("FPS_UI_Toggle", {
     Title = "FPS UI",
+    Description = "ดูเฟรมเรท",
     Default = false,
     Callback = function(state)
         local Players = game:GetService("Players")
@@ -342,6 +346,7 @@ Tabs.Log:AddToggle("FPS_UI_Toggle", {
 
 Tabs.Log:AddToggle("Float_Toggle", {
     Title = "Float",
+    Description = "ลอยตัว",
     Default = false,
     Callback = function(state)
         local Players = game:GetService("Players")
@@ -468,7 +473,7 @@ Tabs.Main:AddToggle("KillAura_Toggle", {
 })
 
 Tabs.Main:AddToggle("KillAura_Toggle", {
-    Title = "KillAuraSkill",
+    Title = "KillAura Skill",
     Description = "ช้า แต่ใช่สกิลได้",
     Default = false,
     Callback = function(state)
@@ -502,6 +507,7 @@ Tabs.Main:AddToggle("KillAura_Toggle", {
 
 Tabs.Main:AddToggle("TP_Entities_Toggle", {
     Title = "TP Zombie",
+    Description = "วาปไปหาซอมบี้",
     Default = false,
     Callback = function(state)
         local Players = game:GetService("Players")
@@ -589,6 +595,7 @@ Tabs.Main:AddToggle("TP_Entities_Toggle", {
 
 Tabs.Main:AddToggle("TPDrop_Toggle", {
     Title = "TP Drop Items",
+    Description = "วาปไปยังไอเทมดรอป",
     Default = false,
     Callback = function(state)
         local Players = game:GetService("Players")
@@ -616,9 +623,9 @@ Tabs.Main:AddToggle("TPDrop_Toggle", {
 })
 
 
-Tabs.Main:AddSection("Teleport")
+Tabs.Tp:AddSection("Teleport")
 
-Tabs.Main:AddButton({
+Tabs.Tp:AddButton({
     Title = "Radio",
     Description = "วาปไปที่ เรดิโอหรือวิทยุ",
     Callback = function()
@@ -638,7 +645,7 @@ Tabs.Main:AddButton({
     end
 })
 
-Tabs.Main:AddButton({
+Tabs.Tp:AddButton({
     Title = "Generator",
     Description = "วาปไปที่ เครื่องปั่นไฟ",
     Callback = function()
@@ -655,7 +662,7 @@ Tabs.Main:AddButton({
     end
 })
 
-Tabs.Main:AddButton({
+Tabs.Tp:AddButton({
     Title = "Airplane",
     Description = "วาปไปที่ เครื่องบิน",
     Callback = function()
@@ -684,6 +691,7 @@ Tabs.Main:AddSection("Skill")
 
 Tabs.Main:AddToggle("Skill1_Toggle", {
     Title = "Skill 1",
+    Description = "เปิดใช้งานสกิล1",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -708,6 +716,7 @@ Tabs.Main:AddToggle("Skill1_Toggle", {
 
 Tabs.Main:AddToggle("Skill2_Toggle", {
     Title = "Skill 2",
+    Description = "เปิดใช้งานสกิล2",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -732,6 +741,7 @@ Tabs.Main:AddToggle("Skill2_Toggle", {
 
 Tabs.Main:AddToggle("Skill3_Toggle", {
     Title = "Skill 3",
+    Description = "เปิดใช้งานสกิล3",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -761,6 +771,7 @@ local doorLoop
 
 Tabs.Main:AddToggle("V_Toggle", {
     Title = "Skill V",
+    Description = "เปิดใช่งานสกิลพิเศษเปิดได้ไม่จำกัดระวังแลค",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -785,6 +796,7 @@ Tabs.Main:AddToggle("V_Toggle", {
 
 Tabs.Main:AddToggle("UltimateMen_Toggle", {
     Title = "Ultimate",
+    Description = "เปิดใช่งานอันติ",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -809,36 +821,9 @@ Tabs.Main:AddToggle("UltimateMen_Toggle", {
     end
 })
 
-
-
-Tabs.Shop:AddSection("Spin Sword")
-
-Tabs.Shop:AddButton({
-    Title = "Spin normal",
-    Description = "สุ่มแบบปกติ",
-    Callback = function()
-        local args = {
-            2,
-            [3] = true
-        }
-        game:GetService("ReplicatedStorage"):WaitForChild("Packets"):WaitForChild("WeaponSpin"):InvokeServer(unpack(args))
-    end
-})
-
-Tabs.Shop:AddButton({
-    Title = "Spin Iuck",
-    Description = "สุ่มแบบโชคดี",
-    Callback = function()
-        local args = {
-            2,
-            true
-        }
-        game:GetService("ReplicatedStorage"):WaitForChild("Packets"):WaitForChild("WeaponSpin"):InvokeServer(unpack(args))
-    end
-})
-
 Tabs.Esp:AddToggle("ESP_Entities_Toggle", {
     Title = "ESP Zombie",
+    Description = "มองซอมบี้",
     Default = false,
     Callback = function(state)
         local RunService = game:GetService("RunService")
@@ -903,6 +888,7 @@ Tabs.Esp:AddToggle("ESP_Entities_Toggle", {
 
 Tabs.Esp:AddToggle("ESP_DropItems_Toggle", {
     Title = "ESP DropItems",
+    Description = "มองไอเทมที่ดรอป",
     Default = false,
     Callback = function(state)
         local dropFolder = workspace:WaitForChild("DropItems")
@@ -976,6 +962,7 @@ local lp = Players.LocalPlayer
 
 Tabs.Esp:AddToggle("ESP__Toggle", {
     Title = "ESP Players",
+    Description = "มองผู้เล่น/เพื่อน",
     Default = false,
     Callback = function(state)
         if state then
@@ -1047,6 +1034,7 @@ do
     local JobId = ""
     Tabs.Settings:AddButton({
         Title = "Copy JobId",
+        Description = "คัดลอกไอดีเชิฟเวอร์",
         Callback = function()
             setclipboard(tostring(game.JobId))
             StarterGui:SetCore("SendNotification", {
@@ -1060,6 +1048,7 @@ do
 
     Tabs.Settings:AddInput("Input_JobId", {
         Title = "JobId",
+        Description = "จอยเชิฟเวอร์",
         Default = "",
         Placeholder = "Enter JobId",
         Numeric = false,
