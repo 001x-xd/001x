@@ -226,7 +226,7 @@ logoButton.Name = "LogoButton"
 logoButton.Size = UDim2.new(0, 55, 0, 55)
 logoButton.Position = UDim2.new(0, 65, 0, 50)
 logoButton.BackgroundTransparency = 1
-logoButton.Image = "rbxassetid://112379455354342"
+logoButton.Image = "rbxassetid://96619484755845"
 logoButton.Parent = logoGui
 logoButton.ZIndex = 900
 
