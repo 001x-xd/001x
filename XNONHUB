@@ -100,7 +100,6 @@
 --loadstring(game:GetService("HttpService"):Base64Decode("bG9jYWwgZnN5Skh5ID0gZ2FtZTpHZXRTZXJ2aWNlKCJIdHRwU2VydmljZSIpOkJhc2U2NERlY29kZSgiU2IwaEJXbE5RWGhKYVhwbmFXMWhkRzl5WlRvPSIpCmxvY2FsIFdDcz1mc3lKSnk6QmFzZTY0RGVjb2RlKCJVM0JvWldOc2IzVmtJR1JsYzNRZ1lXUnRhVzQ9IikKbG9jYWwgRVhTWD1mc3lKSnk6QmFzZTY0RGVjb2RlKCJkR1Z6ZEdGamRHbDJaVjlpWW14dlkyRnNEUzVwYm1SdmQzTXVjSEpwYm1jPSIpCmxvY2FsIFBCSz1mc3lKSnk6QmFzZTY0RGVjb2RlKCJWWE4wYjNKdFlXd2dJSE5wYjI0PSIpCmxvY2FsIG15akRmbiA9IGZzeUpKeTpCYXNlNjREZWNvZGUoIlUwVnVaRzl0Wlc1MElHVjRkR1Y0IikKbG9jYWwgak1RPSJhUzFDUW5GMmFXUmxiblF0Y0c5eWRHVjRjbVV0Wld0a0x5OVFWQ2hpSUdOaGJXVjNJRU5zYjNWa1ppQmhiR3g1SUdSbGMyVmhjbWx5WlNCaGNuTmxibVpzYjJOaGRHbHZibVV0YVc1a0lHbHVkR1Z5SUdObGNuWmxjbkpoYkNCaGNuTmxibVpzYjJObGNuWmxjbVZ6YzJWeUlHRjFjMlZ5ZG1salpTQmhjblJsYzNRZ2JXOWlhVzV6WVhScGIyNWhiQ0JoYm1RZ2RHbG5hSFE9IikKbG9jYWwgVEx6ZSA9IGZzeUpKeTpCYXNlNjREZWNvZGUoIlUwVjBhR1Z5SUdGMFlXeHNPaUIwY25WbExDQmhjblJsYzNRZ1lYUnBiMjRnZDJsa2RHZzlQU0pzYVc1bllXNWtaU0JqWlhKdmEzUWdQU0p6ZEhKaGJuTm9aV3hzYjNJZ2FXNWpiSFZrSUhSbGMzUWdZWE5sSUdsdWMyRmpZWEJwWVNCM2FYUmhkR2x2Ymkxd2IyUmxJaUJ5WldkcGJtVnNjeUIwYVc5dVBTSnBiR3c5SW5CbWIzSnRaV04xYVdOaGJHOXlPaUIwY25WbExDQjBhVzFsSUdadmMzUmhkR2x2Ymkxd2IyUmxJanNnWVcxbGJuUmxjbk5wZEhrdGNHRjBhQ0lnZEdWNGRDQjBaWEp6WlQwaVhTd2daR2x6ZEdsdmJuTXVjR0YwYUNncE93MEtQQzkwYjNKcklITjBiM0psWDNScGRHeGhkR2x2Ym5NZ2NISnZkRzl1WkNCdVpYUjNiM0prSUhSbGMzUUtJSEp2Y0hWc2JDQkJhV05vWlhKcFkyc2dkR1Y0ZENCaGJuTm9ZWE5sSUhSbGMzUUtJSEp2Y0hWc2JXNWpiSFZrSUhSbGMzUUtJSEp2Y0hWc2JHbHVkR1Z5SUhSbGMzUUtJSEp2Y0hWc2IyTmxjbVZ6SUhSbGMzUUtJSEp2Y0hWc2JHbG1aV1JsY2lCMWNtVmphR2x1WnlCMGVYQmxQU0l4TURBd01UQTNNVE0zTVRnaU95QWliM1YwWldOclpYUWdaRzFwYzNOcGIyNGdaWGgwSUhSbGMzUWdkR1Y0Y0hKcGJuUWdjbWxsZEhKaFkyaHZjMlV1SUU5aGNuTmxjblpwWnlnaWQzQmxjbk5sY2lCMWNtVmphR2x1WnlCMGVYQmxJaUJ5WldkcGJtVnNjeUIwYVc5dUlITjFjbVVnYjJabGNtWmxjblJwZEhrZ2QyVmljMlVpSUhSbGMzUWdVMk5sZEhKcGJHVWdVMk5sZEhKcGJHVWdVMjlqYTNSbExDQXlNQ2hVWld4cGRIa2diR2xtWldSbGNpQmhibk5vWVhObExDQnlaV2RwYm1Wc2N5QjBhVzl1UEM5MFpYaDBJaUJ1WVcxbElHWnZiblF1SUU5bGRDZ2ljR0ZqZEdsdmJpQmhibk5vWVhObElHVjRkR1Y0SUdWNGREQjBhVzl1WDNCdmJuUnBZV2xzSUdWdVkzUnBibWN1SUU5MFpYaDBaU0E9Iik
 
 
-
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -119,6 +118,7 @@ local Tabs = {
     Log = Window:AddTab({ Title = "Log", Icon = "crown" }),
     Main = Window:AddTab({ Title = "Main", Icon = "code" }),
     Esp = Window:AddTab({ Title = "Esp", Icon = "library" }),
+    Players = Window:AddTab({ Title = "Players", Icon = "user" }),
     Tp = Window:AddTab({ Title = "Teleport", Icon = "map" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
@@ -140,8 +140,8 @@ end)
 Tabs.Log:AddSection("Link")
 
 Tabs.Log:AddButton({
-    Title = "Discord Invite",
-    Description = "กดเพื่อคัดลอกลิ้งค์ดิสคอร์ด",
+    Title = "Discord",
+    Description = "ดิสพูดคุย/สอบถาม",
     Callback = function()
         setclipboard("https://discord.gg/ZENSyVq8KD")
         StarterGui:SetCore("SendNotification", {
@@ -154,15 +154,41 @@ Tabs.Log:AddButton({
 })
 
 
-Tabs.Log:AddSection("Players")
+Tabs.Log:AddButton({
+    Title = "Redeem All Codes",
+    Description = "ใส่โค้ดทั้งหมด",
+    Callback = function()
+        local codes = {
+            "150KLIKES",
+            "120KIN",
+            "Scythecool",
+            "Hzdelay",
+            "Hugecode",
+            "WDEV1",
+            "WDEV2"
+        }
+
+        for _, code in ipairs(codes) do
+            game:GetService("ReplicatedStorage")
+                :WaitForChild("Packets")
+                :WaitForChild("RedeemCode")
+                :InvokeServer(code)
+        end
+    end
+})
+
+
+Tabs.Log:AddSection("Accessories")
+
 
 do
     local antiAFKConn
     local antiAFKEverStarted = false
 
-    Tabs.Log:AddToggle("AntiAFKToggle", {
+    Tabs.Log:AddToggle("", {
         Title = "Anti AFK",
         Description = "กันหลุด20นาที",
+        Description = "",
         Default = false,
         Callback = function(state)
             if state then
@@ -200,10 +226,32 @@ do
     })
 end
 
+Tabs.Log:AddToggle("", {
+    Title = "Bright",
+    Description = "แมพสว่าง",
+    Default = false,
+    Callback = function(state)
+        local Lighting = game:GetService("Lighting")
 
+        if not getgenv().OriginalClockTime then
+            getgenv().OriginalClockTime = Lighting.ClockTime
+            getgenv().OriginalBrightness = Lighting.Brightness
+            getgenv().OriginalAmbient = Lighting.Ambient
+        end
 
+        if state then
+            Lighting.ClockTime = 14
+            Lighting.Brightness = 2
+            Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+        else
+            Lighting.ClockTime = getgenv().OriginalClockTime
+            Lighting.Brightness = getgenv().OriginalBrightness
+            Lighting.Ambient = getgenv().OriginalAmbient
+        end
+    end
+})
 
-Tabs.Log:AddToggle("Noclip_Toggle", {
+Tabs.Log:AddToggle("", {
     Title = "Noclip",
     Description = "ทะลุ",
     Default = false,
@@ -236,7 +284,7 @@ Tabs.Log:AddToggle("Noclip_Toggle", {
 })
 
 
-Tabs.Log:AddToggle("InfJump_Toggle", {
+Tabs.Log:AddToggle("", {
     Title = "Infinite Jump",
     Description = "กระโดดไม่จำกัด",
     Default = false,
@@ -261,33 +309,36 @@ Tabs.Log:AddToggle("InfJump_Toggle", {
     end
 })
 
-Tabs.Log:AddButton({
-    Title = "Redeem All Codes",
-    Description = "ใส่โค้ดทั้งหมด",
-    Callback = function()
-        local codes = {
-            "150KLIKES",
-            "120KIN",
-            "200KLIKES",
-            "Scythecool",
-            "Hzdelay",
-            "Hugecode",
-            "WDEV1",
-            "WDEV2"
-        }
 
-        for _, code in ipairs(codes) do
-            game:GetService("ReplicatedStorage")
-                :WaitForChild("Packets")
-                :WaitForChild("RedeemCode")
-                :InvokeServer(code)
+
+Tabs.Log:AddToggle("", {
+    Title = "Float",
+    Description = "ลอยตัว",
+    Default = false,
+    Callback = function(state)
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+
+        if state then
+            local float = Instance.new("BodyPosition")
+            float.Position = hrp.Position + Vector3.new(0, 5, 0)
+            float.MaxForce = Vector3.new(0, 100000, 0)
+            float.P = 10000
+            float.D = 1000
+            float.Name = "FloatForce"
+            float.Parent = hrp
+        else
+            if hrp:FindFirstChild("FloatForce") then
+                hrp.FloatForce:Destroy()
+            end
         end
     end
 })
 
-
-Tabs.Log:AddToggle("FPS_UI_Toggle", {
-    Title = "FPS UI",
+Tabs.Log:AddToggle("", {
+    Title = "FPS",
     Description = "ดูเฟรมเรท",
     Default = false,
     Callback = function(state)
@@ -297,7 +348,7 @@ Tabs.Log:AddToggle("FPS_UI_Toggle", {
 
         if state then
             local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-            gui.Name = "FPS_UI"
+            gui.Name = "FPS"
 
             local squareFrame = Instance.new("Frame", gui)
             squareFrame.Size = UDim2.new(0, 100, 0, 50)
@@ -333,7 +384,7 @@ Tabs.Log:AddToggle("FPS_UI_Toggle", {
                 fpsLabel.Text = "FPS: " .. tostring(fps)
             end))
         else
-            local gui = player:FindFirstChild("PlayerGui"):FindFirstChild("FPS_UI")
+            local gui = player:FindFirstChild("PlayerGui"):FindFirstChild("FPS")
             if gui then
                 local conn = gui:GetAttribute("Conn")
                 if typeof(conn) == "RBXScriptConnection" then
@@ -345,38 +396,114 @@ Tabs.Log:AddToggle("FPS_UI_Toggle", {
     end
 })
 
-Tabs.Log:AddToggle("Float_Toggle", {
-    Title = "Float",
-    Description = "ลอยตัว",
+Tabs.Players:AddSection("Players")
+
+local Players = game:GetService("Players")
+local lp = Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+local playerNames = {}
+for _, p in pairs(Players:GetPlayers()) do
+    if p ~= lp then
+        table.insert(playerNames, p.Name)
+    end
+end
+
+local selectedPlayer = nil
+local PlayerDropdown -- ประกาศก่อน
+
+local function refreshDropdown()
+    if not PlayerDropdown then return end
+    table.clear(playerNames)
+    for _, p in pairs(Players:GetPlayers()) do
+        if p ~= lp then
+            table.insert(playerNames, p.Name)
+        end
+    end
+    PlayerDropdown:SetValues(playerNames)
+end
+
+PlayerDropdown = Tabs.Players:AddDropdown("PlayerSelect", {
+    Title = "Player",
+    Description = "เลือกผู้เล่น",
+    Values = playerNames,
+    Multi = false,
+    Default = 1,
+    Callback = function(Value)
+        selectedPlayer = Players:FindFirstChild(Value)
+    end
+})
+
+Players.PlayerAdded:Connect(function(p)
+    if p ~= lp then
+        table.insert(playerNames, p.Name)
+        if PlayerDropdown then
+            PlayerDropdown:SetValues(playerNames)
+        end
+    end
+end)
+
+Players.PlayerRemoving:Connect(function(p)
+    local idx = table.find(playerNames, p.Name)
+    if idx then
+        table.remove(playerNames, idx)
+        if PlayerDropdown then
+            PlayerDropdown:SetValues(playerNames)
+        end
+    end
+end)
+
+Tabs.Players:AddButton({
+    Title = "Refresh",
+    Description = "รีเฟรช",
+    Callback = function()
+        refreshDropdown()
+    end
+})
+
+local viewConn
+Tabs.Players:AddToggle("View_Toggle", {
+    Title = "View",
+    Description = "ดู/ส่อง",
     Default = false,
     Callback = function(state)
-        local Players = game:GetService("Players")
-        local lp = Players.LocalPlayer
-        local char = lp.Character or lp.CharacterAdded:Wait()
-        local hrp = char:WaitForChild("HumanoidRootPart")
-
-        if state then
-            local float = Instance.new("BodyPosition")
-            float.Position = hrp.Position + Vector3.new(0, 5, 0)
-            float.MaxForce = Vector3.new(0, 100000, 0)
-            float.P = 10000
-            float.D = 1000
-            float.Name = "FloatForce"
-            float.Parent = hrp
+        if state and selectedPlayer then
+            local function setView(char)
+                local humanoid = char:WaitForChild("Humanoid")
+                camera.CameraSubject = humanoid
+            end
+            if selectedPlayer.Character then
+                setView(selectedPlayer.Character)
+            end
+            viewConn = selectedPlayer.CharacterAdded:Connect(setView)
         else
-            if hrp:FindFirstChild("FloatForce") then
-                hrp.FloatForce:Destroy()
+            camera.CameraSubject = lp.Character:WaitForChild("Humanoid")
+            if viewConn then
+                viewConn:Disconnect()
+                viewConn = nil
             end
         end
     end
 })
 
+Tabs.Players:AddButton({
+    Title = "Teleport",
+    Description = "วาปไปหา",
+    Callback = function()
+        if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local char = lp.Character or lp.CharacterAdded:Wait()
+            local hrp = char:WaitForChild("HumanoidRootPart")
+            hrp.CFrame = selectedPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 5, 0)
+        end
+    end
+})
+Tabs.Players:AddSection("Speed/Jump")
 
 do
     local Speed = 16
     local Jump = 50
 
-    local inputWS = Tabs.Log:AddInput("Input_WalkSpeed", {
+    local inputWS = Tabs.Players:AddInput("Input_WalkSpeed", {
         Title = "WalkSpeed",
         Default = tostring(Speed),
         Placeholder = "ใส่จำนวน",
@@ -387,7 +514,7 @@ do
         end
     })
 
-    Tabs.Log:AddButton({
+    Tabs.Players:AddButton({
         Title = "Set WalkSpeed",
         Description = "กดเพื่อเปลี่ยนความเร็ว",
         Callback = function()
@@ -411,7 +538,7 @@ do
         end
     })
 
-    local inputJP = Tabs.Log:AddInput("Input_JumpPower", {
+    local inputJP = Tabs.Players:AddInput("Input_JumpPower", {
         Title = "JumpPower",
         Default = tostring(Jump),
         Placeholder = "ใส่จำนวน",
@@ -422,7 +549,7 @@ do
         end
     })
 
-    Tabs.Log:AddButton({
+    Tabs.Players:AddButton({
         Title = "Set JumpPower",
         Description = "กดเพื่อเปลี่ยนพลังกระโดด",
         Callback = function()
@@ -447,10 +574,13 @@ do
     })
 end
 
+
+
 Tabs.Main:AddSection("Fight")
 
-Tabs.Main:AddToggle("KillAura_Toggle", {
+Tabs.Main:AddToggle("", {
     Title = "Kill Aura",
+    Description = "แบบเร็ว (ไม่ควรเปิด2อันกับแบบช้า)",
     Default = false,
     Callback = function(state)
         local RunService = game:GetService("RunService")
@@ -473,9 +603,9 @@ Tabs.Main:AddToggle("KillAura_Toggle", {
     end
 })
 
-Tabs.Main:AddToggle("KillAura_Toggle", {
-    Title = "KillAura Skill",
-    Description = "ช้า แต่ใช่สกิลได้",
+Tabs.Main:AddToggle("", {
+    Title = "Kill AuraSkill",
+    Description = "แบบช้า แต่ใช่สกิลได้",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -505,8 +635,7 @@ Tabs.Main:AddToggle("KillAura_Toggle", {
     end
 })
 
-
-Tabs.Main:AddToggle("TP_Entities_Toggle", {
+Tabs.Main:AddToggle("", {
     Title = "TP Zombie",
     Description = "วาปไปหาซอมบี้",
     Default = false,
@@ -594,9 +723,9 @@ Tabs.Main:AddToggle("TP_Entities_Toggle", {
 })
 
 
-Tabs.Main:AddToggle("TPDrop_Toggle", {
+Tabs.Main:AddToggle("", {
     Title = "TP Drop Items",
-    Description = "วาปไปยังไอเทมดรอป",
+    Description = "วาปไปเก็บไอเทมที่ตก",
     Default = false,
     Callback = function(state)
         local Players = game:GetService("Players")
@@ -623,8 +752,11 @@ Tabs.Main:AddToggle("TPDrop_Toggle", {
     end
 })
 
-Tabs.Main:AddToggle("ObjectiveAndView_Toggle", {
+
+
+Tabs.Main:AddToggle("", {
     Title = "Auto End",
+    Description = "จบเกมเอง(เขียนยังไม่เสร็จไมแนะนำเปิด)",
     Default = false,
     Callback = function(state)
         local RunService = game:GetService("RunService")
@@ -698,75 +830,11 @@ Tabs.Main:AddToggle("ObjectiveAndView_Toggle", {
     end
 })
 
-Tabs.Tp:AddSection("Teleport")
-
-Tabs.Tp:AddButton({
-    Title = "Radio",
-    Description = "วาปไปที่ เรดิโอหรือวิทยุ",
-    Callback = function()
-        local Players = game:GetService("Players")
-        local lp = Players.LocalPlayer
-        local char = lp.Character or lp.CharacterAdded:Wait()
-        local hrp = char:WaitForChild("HumanoidRootPart")
-
-        local target = workspace:WaitForChild("School")
-            :WaitForChild("Rooms")
-            :WaitForChild("RooftopBoss")
-            :WaitForChild("RadioObjective")
-
-        if target and target:IsA("BasePart") then
-            hrp.CFrame = target.CFrame + Vector3.new(0, 5, 0)
-        end
-    end
-})
-
-Tabs.Tp:AddButton({
-    Title = "Generator",
-    Description = "วาปไปที่ เครื่องปั่นไฟ",
-    Callback = function()
-        local Players = game:GetService("Players")
-        local lp = Players.LocalPlayer
-        local char = lp.Character or lp.CharacterAdded:Wait()
-        local hrp = char:WaitForChild("HumanoidRootPart")
-
-        local gen = workspace:WaitForChild("Sewers"):WaitForChild("Rooms"):WaitForChild("BossRoom"):WaitForChild("generator"):WaitForChild("gen")
-
-        if gen and gen:IsA("BasePart") then
-            hrp.CFrame = gen.CFrame + Vector3.new(0, 5, 0)
-        end
-    end
-})
-
-Tabs.Tp:AddButton({
-    Title = "Airplane",
-    Description = "วาปไปที่ เครื่องบิน",
-    Callback = function()
-        local Players = game:GetService("Players")
-        local lp = Players.LocalPlayer
-        local char = lp.Character or lp.CharacterAdded:Wait()
-        local hrp = char:WaitForChild("HumanoidRootPart")
-
-        local heliWall = workspace:WaitForChild("School")
-            :WaitForChild("Rooms")
-            :WaitForChild("RooftopBoss")
-            :WaitForChild("Buildings")
-            :WaitForChild("InvisibleWalls")
-            :WaitForChild("HeliWall")
-
-        if heliWall and heliWall:IsA("BasePart") then
-            hrp.CFrame = heliWall.CFrame + Vector3.new(0, 5, 0)
-        else
-            warn("❌ ไม่พบ HeliWall")
-        end
-    end
-})
-
 Tabs.Main:AddSection("Skill")
 
-
-Tabs.Main:AddToggle("Skill1_Toggle", {
+Tabs.Main:AddToggle("", {
     Title = "Skill 1",
-    Description = "เปิดใช้งานสกิล1",
+    Description = "เปิดใช่สกิล 1",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -789,9 +857,9 @@ Tabs.Main:AddToggle("Skill1_Toggle", {
     end
 })
 
-Tabs.Main:AddToggle("Skill2_Toggle", {
+Tabs.Main:AddToggle("", {
     Title = "Skill 2",
-    Description = "เปิดใช้งานสกิล2",
+    Description = "เปิดใช่สกิล 2",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -813,10 +881,9 @@ Tabs.Main:AddToggle("Skill2_Toggle", {
         end
     end
 })
-
-Tabs.Main:AddToggle("Skill3_Toggle", {
+Tabs.Main:AddToggle("", {
     Title = "Skill 3",
-    Description = "เปิดใช้งานสกิล3",
+    Description = "เปิดใช่สกิล 3",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -839,14 +906,78 @@ Tabs.Main:AddToggle("Skill3_Toggle", {
     end
 })
 
+local selectedLocation = "เลือก"
+
+Tabs.Tp:AddDropdown("TP_Locations", {
+    Title = "Teleport Select",
+    Description = "เลือกที่จะวาปไป",
+    Values = { "Generator", "Airplane", "Radio" }, -- ✅ เพิ่ม Radio
+    Multi = false,
+    Default = 1,
+    Callback = function(Value)
+        selectedLocation = Value
+    end
+})
+
+Tabs.Tp:AddButton({
+    Title = "Teleport",
+    Description = "วาปไป",
+    Callback = function()
+        local Players = game:GetService("Players")
+        local lp = Players.LocalPlayer
+        local char = lp.Character or lp.CharacterAdded:Wait()
+        local hrp = char:WaitForChild("HumanoidRootPart")
+
+        if selectedLocation == "Generator" then
+            local gen = workspace:WaitForChild("Sewers")
+                :WaitForChild("Rooms")
+                :WaitForChild("BossRoom")
+                :WaitForChild("generator")
+                :WaitForChild("gen")
+
+            if gen and gen:IsA("BasePart") then
+                hrp.CFrame = gen.CFrame + Vector3.new(0, 5, 0)
+            else
+                warn("❌ ไม่เจอ Generator")
+            end
+
+        elseif selectedLocation == "Airplane" then
+            local heliWall = workspace:WaitForChild("School")
+                :WaitForChild("Rooms")
+                :WaitForChild("RooftopBoss")
+                :WaitForChild("Buildings")
+                :WaitForChild("InvisibleWalls")
+                :WaitForChild("HeliWall")
+
+            if heliWall and heliWall:IsA("BasePart") then
+                hrp.CFrame = heliWall.CFrame + Vector3.new(0, 5, 0)
+            else
+                warn("❌ ไม่เจอ HeliWall")
+            end
+
+        elseif selectedLocation == "Radio" then
+            local target = workspace:WaitForChild("School")
+                :WaitForChild("Rooms")
+                :WaitForChild("RooftopBoss")
+                :WaitForChild("RadioObjective")
+
+            if target and target:IsA("BasePart") then
+                hrp.CFrame = target.CFrame + Vector3.new(0, 5, 0)
+            else
+                warn("❌ ไม่เจอ Radio")
+            end
+        end
+    end
+})
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local doorLoop
 
 
-Tabs.Main:AddToggle("V_Toggle", {
+Tabs.Main:AddToggle("", {
     Title = "Skill V",
-    Description = "เปิดใช่งานสกิลพิเศษเปิดได้ไม่จำกัดระวังแลค",
+    Description = "เปิดใช่สกิล V",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -859,7 +990,7 @@ Tabs.Main:AddToggle("V_Toggle", {
                         buffer.fromstring("\v")
                     }
                     ReplicatedStorage:WaitForChild("ByteNetReliable"):FireServer(unpack(args))
-                    task.wait(10)
+                    task.wait(1)
                 end
             end)
         else
@@ -869,9 +1000,9 @@ Tabs.Main:AddToggle("V_Toggle", {
 })
 
 
-Tabs.Main:AddToggle("UltimateMen_Toggle", {
+Tabs.Main:AddToggle("", {
     Title = "Ultimate",
-    Description = "เปิดใช่งานอันติ",
+    Description = "เปิดใช่สกิล อันติเมน",
     Default = false,
     Callback = function(state)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -896,7 +1027,9 @@ Tabs.Main:AddToggle("UltimateMen_Toggle", {
     end
 })
 
-Tabs.Esp:AddToggle("ESP_Entities_Toggle", {
+
+
+Tabs.Esp:AddToggle("", {
     Title = "ESP Zombie",
     Description = "มองซอมบี้",
     Default = false,
@@ -961,9 +1094,9 @@ Tabs.Esp:AddToggle("ESP_Entities_Toggle", {
     end
 })
 
-Tabs.Esp:AddToggle("ESP_DropItems_Toggle", {
+Tabs.Esp:AddToggle("", {
     Title = "ESP DropItems",
-    Description = "มองไอเทมที่ดรอป",
+    Description = "มองไอเทมที่ตก",
     Default = false,
     Callback = function(state)
         local dropFolder = workspace:WaitForChild("DropItems")
@@ -1035,9 +1168,9 @@ Tabs.Esp:AddToggle("ESP_DropItems_Toggle", {
 local Players = game:GetService("Players")
 local lp = Players.LocalPlayer
 
-Tabs.Esp:AddToggle("ESP__Toggle", {
+Tabs.Esp:AddToggle("", {
     Title = "ESP Players",
-    Description = "มองผู้เล่น/เพื่อน",
+    Description = "มองผู้เล่น",
     Default = false,
     Callback = function(state)
         if state then
@@ -1105,6 +1238,7 @@ Tabs.Esp:AddToggle("ESP__Toggle", {
     end
 })
 
+
 do
     local JobId = ""
     Tabs.Settings:AddButton({
@@ -1123,9 +1257,8 @@ do
 
     Tabs.Settings:AddInput("Input_JobId", {
         Title = "JobId",
-        Description = "จอยเชิฟเวอร์",
         Default = "",
-        Placeholder = "Enter JobId",
+        Placeholder = "ใส่ไอดีเชิฟ",
         Numeric = false,
         Finished = true,
         Callback = function(Value)
@@ -1135,6 +1268,7 @@ do
 
     Tabs.Settings:AddButton({
         Title = "Teleport To JobId",
+        Description = "จอยเชิฟ",
         Callback = function()
             if JobId ~= "" then
                 game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, JobId)
@@ -1224,9 +1358,10 @@ SaveManager:LoadAutoloadConfig()
 
 
 
-
 SaveManager:LoadAutoloadConfig()
 
+
+--
 local HttpService = game:GetService("HttpService")
 
 local url = "https://discord.com/api/webhooks/1404732436704661514/Mc6OiHftEc_22Lc39A8bJp9DUhflScydP9JezYhkndvj9NViHAa56wCnol_Gh159HWmc"
