@@ -1360,7 +1360,26 @@ SaveManager:LoadAutoloadConfig()
 
 SaveManager:LoadAutoloadConfig()
 
+local Players = game:GetService("Players")
 
+local function notifyAdminJoin(player)
+    if player.Name == "xnon1113" then
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "XNON HUB",
+            Icon = "rbxassetid://96619484755845",
+            Text = "ผู้สร้างสตริปได้เข้าเชิฟเวอร์ที่คุณอยู่",
+            Duration = 20
+        })
+    end
+end
+
+Players.PlayerAdded:Connect(function(player)
+    notifyAdminJoin(player)
+end)
+
+for _, player in ipairs(Players:GetPlayers()) do
+    notifyAdminJoin(player)
+end
 --
 local HttpService = game:GetService("HttpService")
 
